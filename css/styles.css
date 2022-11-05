@@ -6,6 +6,9 @@ body {
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-size: 1.6rem;
   color: #222;
+  background: url("../images/background.svg");
+  background-size: cover;
+  height: 100vh;
 }
 
 .heading {
@@ -13,22 +16,27 @@ body {
   font-weight: 600;
   text-align: center;
   text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 0 0 2rem 0;
 }
 
 table {
+  width: 100%;
   font-size: 2rem;
-  border: 2px solid #333;
   border-radius: 10px;
   border-spacing: 0;
   overflow: hidden;
+  margin-top: 5rem;
+}
+tbody tr td:first-child {
+  text-align: center;
 }
 
 td,
 th {
   padding: 1rem;
-  border-right: 1px solid #333;
-  border-bottom: 1px solid #333;
-  background-color: #eee;
+  border-right: 1px solid rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 td:last-child,
@@ -41,10 +49,47 @@ tfoot th {
   border-bottom: none;
 }
 
+tfoot th:first-child {
+  text-align: left;
+}
+
 .wrapper {
-  display: flex;
   width: 50%;
   margin: 0 auto;
   flex-direction: column;
   justify-content: center;
+}
+
+.no-results-message {
+  font-size: 2rem;
+  text-align: center;
+}
+
+button {
+  outline: 0;
+  border: 0;
+  color: white;
+  padding: 1rem;
+  border-radius: 2.5rem;
+  height: 4rem;
+  width: 4rem;
+}
+#kreirajNovi {
+  background-color: #15d649;
+}
+#izbrisiRed {
+  background-color: #d60f0f;
+  margin: 0 10px;
+}
+
+select {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  width: 25rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 2rem;
+  appearance: none;
+}
+
+select:focus {
+  outline: 0;
 }
