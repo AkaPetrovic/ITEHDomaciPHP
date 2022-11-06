@@ -144,8 +144,14 @@ form {
 form input {
   display: block;
   border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 1rem;
+  border-radius: 3rem;
   margin-bottom: 2rem;
+  padding: 1rem 2rem;
+  margin-top: 3px;
+}
+
+label {
+  padding-left: 1.5rem;
 }
 
 input:focus {
@@ -154,7 +160,7 @@ input:focus {
 
 form select {
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   width: 60%;
 }
 

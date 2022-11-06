@@ -59,7 +59,7 @@
     <link rel="stylesheet" href="css/styles.css" />
     <script src="https://kit.fontawesome.com/ab4d6c9c7b.js" crossorigin="anonymous"></script>
   </head>
-  <body>
+  <body onload="setProperId()">
     <div class="wrapper">
       <h1 class="heading">Tabela automobila</h1>
       <?php
@@ -76,6 +76,7 @@
             }
           ?>
         </select>
+        <p class="message-success hidden">Automobil je dodat</p>
         <table>
           <thead>
             <tr>
@@ -115,8 +116,6 @@
       ?>
     </div>
 
-    <p class="message-success hidden">Automobil je dodat</p>
-
     <div class="backdrop hidden"></div>
 
     <div class="modal hidden">
@@ -133,7 +132,7 @@
           ?>
         </select>
         
-        <input type="hidden" name="id" id="id" value="<?php $noviID = sizeof($automobili) + 1; echo $noviID;?>">
+        <input type="hidden" name="id" id="id" value="">
 
         <label for="model">Model</label>
         <input type="text" name="model" id="model">

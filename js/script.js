@@ -8,6 +8,45 @@ function promeniVidljivost(elements) {
   });
 }
 
+$("#izbrisiRed").on("click", function () {
+  request = $.ajax({
+    url: "handler/delete.php",
+    type: "post",
+    data: { id: $("#izabraniRed").val() },
+  });
+  request.done(function (response) {
+    if (response === "Success") {
+      updateViewAfterRemove();
+      alert("Red u tabeli je uspesno obrisan");
+    } else {
+      alert("Brisanje reda u tabeli: Neuspesno");
+    }
+  });
+});
+
+function updateViewAfterRemove() {
+  const trazeniRedniBroj = $("#izabraniRed").val();
+  const length = document.getElementsByTagName("tbody")[0].children.length;
+  const collection = document.getElementsByTagName("tbody")[0].children;
+  let content;
+  for (let i = 0; i < length; i++) {
+    content = collection[i].children[0].innerHTML;
+    if (trazeniRedniBroj == content) {
+      collection[i].remove();
+      break;
+    }
+  }
+  const vrednost = document.getElementById("izabraniRed").value;
+  const el = document.getElementById("izabraniRed").children;
+  for (let i = 0; i < el.length; i++) {
+    if (el[i].value == vrednost) el[i].remove();
+  }
+  $("#izabraniRed").val(1);
+  $("tfoot tr th:last-child").html(
+    parseInt($("tfoot tr th:last-child").text()) - 1
+  );
+}
+
 $("#formKreiranje").submit(function () {
   event.preventDefault();
   const form = $(this);
@@ -25,12 +64,12 @@ $("#formKreiranje").submit(function () {
 
   request.done(function (response) {
     if (response === "Success") {
-      updateView(obj);
+      updateViewAfterAdd(obj);
     } else console.log("Autmobil nije dodat: " + response);
   });
 });
 
-function updateView(obj) {
+function updateViewAfterAdd(obj) {
   const nazivProizvodjaca = $("#proizvodjaci")
     .find(":selected")
     .text()
@@ -44,12 +83,23 @@ function updateView(obj) {
       <td>${obj.godiste}</td>
     </tr>
   `);
-  promeniVidljivost([document.getElementsByClassName("message-success")[0]]);
-  setTimeout(function () {
-    promeniVidljivost([document.getElementsByClassName("message-success")[0]]);
-  }, 5000);
+  $("#izabraniRed").append(`
+    <option value="${obj.id}">${obj.id} ${nazivProizvodjaca}</option>
+  `);
+  // promeniVidljivost([document.getElementsByClassName("message-success")[0]]);
+  // setTimeout(function () {
+  //   promeniVidljivost([document.getElementsByClassName("message-success")[0]]);
+  // }, 5000);
+  document.getElementById("formKreiranje").reset();
+  setProperId();
+}
+
+function setProperId() {
+  const idElement = document.getElementById("id");
+  const properId = parseInt($("tbody tr:last-child td:first-child").text()) + 1;
+  idElement.value = properId;
 }
 
 $("#proba").on("click", function () {
-  promeniVidljivost([document.getElementsByClassName("message-success")[0]]);
+  console.log(parseInt($("tfoot tr th:last-child").text()));
 });
