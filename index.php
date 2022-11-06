@@ -17,7 +17,7 @@
         $proizvodjaci[] = $row;
       }
     } else {
-      echo "Proizvodjaca u bazi podataka";
+      echo "Nema proizvodjaca u bazi podataka";
     }
   }
 
@@ -37,10 +37,6 @@
       }
     }
   }
-
-  // foreach($automobili as $automobil){
-  //     echo "$automobil[id] $automobil[nazivProizvodjaca] $automobil[model] $automobil[godiste] <br>";
-  // }
 
 ?>
 
@@ -69,10 +65,9 @@
       <?php
         if($resultA->num_rows > 0):
       ?>
-        <button id="kreirajNovi"><i class="fa-solid fa-plus"></i></button>
-        <button id="izbrisiRed"><i class="fa-solid fa-trash"></i></button>
+        <button id="kreirajNovi" class="button" onclick="promeniVidljivost([document.getElementsByClassName('modal')[0], document.getElementsByClassName('backdrop')[0]])"><i class="fa-solid fa-plus"></i></button>
+        <button id="izbrisiRed" class="button"><i class="fa-solid fa-trash"></i></button>
         <select name="izabraniRed" id="izabraniRed">
-          <option value="izaberi">Izaberite red u tabeli...</option>
           <?php
             foreach($automobili as $automobil){
           ?>
@@ -119,10 +114,43 @@
         endif;
       ?>
     </div>
+
+    <p class="message-success hidden">Automobil je dodat</p>
+
+    <div class="backdrop hidden"></div>
+
+    <div class="modal hidden">
+      <h2>Kreiranje novog automobila</h2>
+      <form id="formKreiranje" method="POST">
+
+        <select name="proizvodjaci" id="proizvodjaci">
+          <?php
+            foreach($proizvodjaci as $proizvodjac){
+          ?>
+            <option value="<?php echo "$proizvodjac[id]"?>"><?php echo "$proizvodjac[id] $proizvodjac[naziv]"?></option>
+          <?php
+            }
+          ?>
+        </select>
+        
+        <input type="hidden" name="id" id="id" value="<?php $noviID = sizeof($automobili) + 1; echo $noviID;?>">
+
+        <label for="model">Model</label>
+        <input type="text" name="model" id="model">
+
+        <label for="godiste">Godiste</label>
+        <input type="number" name="godiste" id="godiste">
+
+        <button type="button" id="proba">Proba</button>
+        <button type="submit" id="dodajButton" onclick="promeniVidljivost([this.parentNode.parentNode, document.getElementsByClassName('backdrop')[0]])">Dodaj</button>
+        <button type="button" id="modalButton" onclick="promeniVidljivost([this.parentNode.parentNode, document.getElementsByClassName('backdrop')[0]])">Izadji</button>
+      </form>
+    </div>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.1.js"
             integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
             crossorigin="anonymous">
     </script>
+    <script src="js/script.js"></script>
   </body>
 </html>

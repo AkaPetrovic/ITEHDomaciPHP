@@ -25,9 +25,9 @@
              return $conn->query($q);
          }
      
-         public static function add($proizvodjac_id, $model, $godiste, mysqli $conn)
+         public static function add($id, $proizvodjac_id, $model, $godiste, mysqli $conn)
          {
-             $q = "INSERT INTO automobil(proizvodjac_id, model, godiste) values('$proizvodjac_id', '$model', '$godiste')";
+             $q = "INSERT INTO automobil(id, proizvodjac_id, model, godiste) values('$id', '$proizvodjac_id', '$model', '$godiste')";
              return $conn->query($q);
          }
      }

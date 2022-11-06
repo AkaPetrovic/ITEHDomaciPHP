@@ -3,21 +3,23 @@ html {
 }
 
 body {
-  font-family: "Inter", Arial, Helvetica, sans-serif;
-  font-size: 1.6rem;
-  color: #222;
   background: url("../images/background.svg");
   background-size: cover;
+  color: #222;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-size: 1.6rem;
   height: 100vh;
+  position: relative;
 }
 
 .heading {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   font-size: 5rem;
   font-weight: 600;
+  padding: 2rem 0;
   text-align: center;
   text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-  padding: 0 0 2rem 0;
+  margin-top: 0;
 }
 
 table {
@@ -28,15 +30,16 @@ table {
   overflow: hidden;
   margin-top: 5rem;
 }
+
 tbody tr td:first-child {
   text-align: center;
 }
 
 td,
 th {
-  padding: 1rem;
-  border-right: 1px solid rgba(0, 0, 0, 0.3);
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  border-right: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 1rem;
 }
 
 td:last-child,
@@ -54,10 +57,10 @@ tfoot th:first-child {
 }
 
 .wrapper {
-  width: 50%;
-  margin: 0 auto;
   flex-direction: column;
   justify-content: center;
+  margin: 0 auto;
+  width: 50%;
 }
 
 .no-results-message {
@@ -65,31 +68,97 @@ tfoot th:first-child {
   text-align: center;
 }
 
-button {
-  outline: 0;
+.button {
+  border-radius: 2.5rem;
   border: 0;
   color: white;
-  padding: 1rem;
-  border-radius: 2.5rem;
   height: 4rem;
+  outline: 0;
+  padding: 1rem;
   width: 4rem;
 }
+
 #kreirajNovi {
   background-color: #15d649;
 }
+
 #izbrisiRed {
   background-color: #d60f0f;
   margin: 0 10px;
 }
 
+form button {
+  padding: 1rem 2rem;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 3rem;
+  margin-left: 1rem;
+}
+
 select {
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  width: 25rem;
-  padding: 0.5rem 1.5rem;
-  border-radius: 2rem;
   appearance: none;
+  border-radius: 2rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0.5rem 1.5rem;
+  width: 25rem;
 }
 
 select:focus {
   outline: 0;
+}
+
+.modal,
+.backdrop {
+  position: absolute;
+}
+
+.backdrop {
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 100%;
+  width: 100%;
+  top: 0;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 50%;
+  height: 50%;
+  top: 25%;
+  left: 25%;
+  z-index: 1;
+  background-color: white;
+  box-shadow: 0 0 50px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+}
+
+.hidden {
+  display: none;
+}
+
+form {
+  margin-top: 2rem;
+}
+
+form input {
+  display: block;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+}
+
+input:focus {
+  outline: 0;
+}
+
+form select {
+  display: block;
+  margin-bottom: 1rem;
+  width: 60%;
+}
+
+.message-success {
+  text-align: center;
+  font-size: 3rem;
 }
