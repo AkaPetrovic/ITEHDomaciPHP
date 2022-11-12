@@ -82,9 +82,13 @@ tfoot th:first-child {
   background-color: #15d649;
 }
 
+#izmeniRed {
+  background-color: #ffd000;
+  margin: 0 10px;
+}
+
 #izbrisiRed {
   background-color: #d60f0f;
-  margin: 0 10px;
 }
 
 form button {
@@ -100,6 +104,7 @@ select {
   border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 0.5rem 1.5rem;
   width: 25rem;
+  margin-left: 10px;
 }
 
 select:focus {
@@ -162,9 +167,4 @@ form select {
   display: block;
   margin-bottom: 2rem;
   width: 60%;
-}
-
-.message-success {
-  text-align: center;
-  font-size: 3rem;
 }

@@ -21,6 +21,11 @@
     }
   }
 
+  // foreach($proizvodjaci as $proizvodjac){
+  //   echo "$proizvodjac[0] $proizvodjac[1]<br>";
+  // }
+  // echo "<br><br>";
+
   $resultA = Automobil::getAll($conn);
   if(!$resultA){
     echo "Nastala je greska prilikom izvrsavanja upita";
@@ -37,6 +42,10 @@
       }
     }
   }
+
+  // foreach($automobili as $automobil){
+  //   echo "$automobil[id] $automobil[proizvodjac_id] $automobil[model] $automobil[godiste]<br>";
+  // }
 
 ?>
 
@@ -66,6 +75,7 @@
         if($resultA->num_rows > 0):
       ?>
         <button id="kreirajNovi" class="button" onclick="promeniVidljivost([document.getElementsByClassName('modal')[0], document.getElementsByClassName('backdrop')[0]])"><i class="fa-solid fa-plus"></i></button>
+        <button id="izmeniRed" class="button" onclick="populateId(); promeniVidljivost([document.getElementsByClassName('modal')[1], document.getElementsByClassName('backdrop')[0]])"><i class="fa-solid fa-pen"></i></button>
         <button id="izbrisiRed" class="button"><i class="fa-solid fa-trash"></i></button>
         <select name="izabraniRed" id="izabraniRed">
           <?php
@@ -76,7 +86,6 @@
             }
           ?>
         </select>
-        <p class="message-success hidden">Automobil je dodat</p>
         <table>
           <thead>
             <tr>
@@ -116,8 +125,10 @@
       ?>
     </div>
 
+    <!-- BACKDROP -->
     <div class="backdrop hidden"></div>
 
+    <!-- MODEL KREIRANJE - START -->
     <div class="modal hidden">
       <h2>Kreiranje novog automobila</h2>
       <form id="formKreiranje" method="POST">
@@ -140,11 +151,41 @@
         <label for="godiste">Godiste</label>
         <input type="number" name="godiste" id="godiste">
 
-        <button type="button" id="proba">Proba</button>
         <button type="submit" id="dodajButton" onclick="promeniVidljivost([this.parentNode.parentNode, document.getElementsByClassName('backdrop')[0]])">Dodaj</button>
         <button type="button" id="modalButton" onclick="promeniVidljivost([this.parentNode.parentNode, document.getElementsByClassName('backdrop')[0]])">Izadji</button>
       </form>
     </div>
+    <!-- MODAL KREIRANJE - END -->
+
+    <!-- MODAL IZMENA -START -->
+    <div class="modal hidden">
+      <h2>Izmena automobila</h2>
+      <form id="formIzmena" method="POST">
+
+        <select name="proizvodjaci" id="proizvodjaciIzmena">
+          <?php
+            foreach($proizvodjaci as $proizvodjac){
+          ?>
+            <option value="<?php echo "$proizvodjac[id]"?>"><?php echo "$proizvodjac[id] $proizvodjac[naziv]"?></option>
+          <?php
+            }
+          ?>
+        </select>
+        
+        <input type="hidden" name="id" id="idIzmena" value="">
+
+        <label for="model">Model</label>
+        <input type="text" name="model" id="modelIzmena">
+
+        <label for="godiste">Godiste</label>
+        <input type="number" name="godiste" id="godisteIzmena">
+
+        <button type="submit" id="dodajButton" onclick="promeniVidljivost([this.parentNode.parentNode, document.getElementsByClassName('backdrop')[0]])">Izmeni</button>
+        <button type="button" id="modalButton" onclick="promeniVidljivost([this.parentNode.parentNode, document.getElementsByClassName('backdrop')[0]])">Izadji</button>
+      </form>
+    </div>
+    <!-- MODAL IZMENA - END -->
+
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.1.js"
             integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
